@@ -1,0 +1,34 @@
+<%- include header %>
+
+<form autocomplete="off" class="signin" method="post">
+<fieldset>
+  <section>
+     <label for="name">用户名</label>
+     <input type="text" id="name" name="name" />
+  </section>
+
+  <section>
+     <label for="password">密码</label>
+     <input type="password" id="password" name="password" maxlength="20" />
+     <p class="direction">Wrong username or passwrod</p>
+  </section>
+
+  <section>
+     <label for="password-repeat">确认密码</label>
+     <input type="password" id="password-repeat" name="password-repeat" maxlength="20" />
+     <p class="direction">Wrong username or passwrod</p>
+  </section>
+  
+  <section>
+      <label for="email">邮箱</label>
+      <input type="email" id="email" name="email" />
+  </section>   
+ 
+  <section>
+      <input type="submit" value="註册" />
+  </section>
+</fieldset>
+<form>
+
+<%- include footer %>
+

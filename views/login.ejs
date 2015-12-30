@@ -1,0 +1,34 @@
+<%- include header %>
+
+ 
+ <form autocomplete="off" class="signin" method="post">
+ <fieldset>
+   <!--控件組的標題 -->
+   <legend><span>Sign in for blog post</span></legend>
+
+   <section> <!--email是用戶名 -->
+      <!--與控件ID同名的for屬性將標註與控件關聯起來 -->
+      <label for="name">用戶名</label>
+
+      <!-- type屬性的text值表明這是文本框 -->
+      <input type="text" id="name" name="name" />
+   </section>
+
+   <section> <!-- 密碼 -->
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" maxlength="20" />
+
+      <!-- 只有添加error類才會顯示 -->
+      <p class="direction">Wrong user name or password</p>
+   </section>
+   <br>
+   <section> <!--提交按鈕 -->
+      <input type="submit" value="登入" />
+      <p></p>
+      <p></p>
+      <p class="signup">Not signed up? <a href="#">Register now!</a></p>
+   </section>
+   
+ </fieldset>
+ </form>     
+<%- include footer %>

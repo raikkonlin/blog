@@ -4,8 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
 var routes = require('./routes/index');
+var settings = require('./settings');
 //var users = require('./routes/users');
 
 var app = express();
@@ -28,6 +31,19 @@ routes(app);
 app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+app.use(session({
+  secret: settings.cookieSecret,
+  resave: true,
+  saveUninitialized: true,
+  key: settings.db, //cookie name
+  cookie: {maxAge: 1000 * 60 * 60 * 24 *30}, //30days
+  store: new MongoStore({
+         db: settings.db,
+         host: settings.host,
+         port: settings.port  
+  })
+}));
 
 //app.use('/', routes);
 //app.use('/users', users);
