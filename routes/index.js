@@ -1,14 +1,21 @@
 var crypto = require('crypto'),
-    User = require('../models/user.js');
+    User = require('../models/user.js'),
+    Post = require('../models/post.js');
 
 module.exports = function(app) {
   app.get('/', function (req, res, next) {
+    Post.get(null, function(err, posts) {
+      if (err){
+        posts = [];
+      }
     res.render('index', { 
           title: '主页',
           user: req.session.user,
+          posts: posts,
           success: req.flash('success').toString(),
           error: req.flash('error').toString()
         });
+    });
   });
 
   app.get('/reg', checkNotLogin); //如果已經登入，表示已經註冊，
@@ -117,6 +124,17 @@ module.exports = function(app) {
 
   app.post('/post', checkLogin);
   app.post('/post', function (req, res, next) {
+    var currentUser = req.session.user,
+        post = new Post(currentUser.name, req.body.title, req.body.post);
+
+    post.save(function(err){
+      if (err) {
+        req.flash('error', err);
+        return res.redirect('/');
+      }
+      req.flash('success', '发表成功！');
+      res.redirect('/'); //发表成功跳转到主页
+    });
   });
 
   app.get('/logot', checkLogin);

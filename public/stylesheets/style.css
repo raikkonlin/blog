@@ -59,6 +59,13 @@ article a:hover {
 
 .info {
   font-size: 14px;
+  float: left;
+  font-family: "Microsoft YaHei";
+  font-size: 1.1em;
+  text-transform: uppercase;
+  margin-left: -12em; 
+  width: 9em;
+  text-align: right;
 }
 
 form.signin {
@@ -112,6 +119,18 @@ form.signin {
   border-radius: 10px 0 10px 0;
 }
 
+/* for post */
+section input {
+  float: left;
+  width: 10.5em; /* 控件欄的寬度 */
+  margin: .2em 0 0 .5em;
+  padding: 3px 10px 2px; /* 輸入文本與控件的間距 */
+  color: #555;
+  font-size: .8em;
+  outline: none; /* 去掉默認的輪廓線 */
+  border-radius: 10px 0 10px 0;
+}
+
 /* 去掉webkit默認的黃色背景 */
 input:-webkit-autofill {
   color: #fff !important;   
@@ -119,6 +138,20 @@ input:-webkit-autofill {
 
 .signin section input[type=submit] {
   float: right; /* 將按鈕與控件右邊對齊 */
+  width: auto; /* 重設按鈕寬度 */
+  margin: 0 2px 3px 0;
+  padding: 0px 8px 3px;
+  font-size: 1em;
+  font-weight: 800;
+  color: #f00;
+  border: none;
+  background-color: #d6e636;
+  box-shadow: 1px 1px 2px #888;
+}
+
+/* for post */
+section input[type=submit] {
+  float: left; /* 將按鈕與控件右邊對齊 */
   width: auto; /* 重設按鈕寬度 */
   margin: 0 2px 3px 0;
   padding: 0px 8px 3px;
