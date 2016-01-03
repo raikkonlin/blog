@@ -9,6 +9,7 @@ var MongoStore = require('connect-mongo')(session);
 
 var routes = require('./routes/index');
 var settings = require('./settings');
+var flash = require('connect-flash');
 //var users = require('./routes/users');
 
 var app = express();
@@ -23,21 +24,16 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-routes(app);
-
-app.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + app.get('port'));
-});
-
 app.use(session({
   secret: settings.cookieSecret,
   resave: true,
   saveUninitialized: true,
   key: settings.db, //cookie name
-  cookie: {maxAge: 1000 * 60 * 60 * 24 *30}, //30days
+  cookie: {
+        path: '/',
+        maxAge: 1000 * 60 * 60 * 24 *30}, //30days
   store: new MongoStore({
          db: settings.db,
          host: settings.host,
@@ -45,6 +41,14 @@ app.use(session({
   })
 }));
 
+app.use(flash());
+app.use(express.static(path.join(__dirname, 'public')));
+
+routes(app);
+
+app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + app.get('port'));
+});
 //app.use('/', routes);
 //app.use('/users', users);
 
