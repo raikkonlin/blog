@@ -135,9 +135,18 @@ module.exports = function(app) {
         return res.redirect('/');
       }
     });
+<<<<<<< HEAD
     
       req.flash('success', '发表成功！');
       res.redirect('/'); //发表成功跳转到主页
+=======
+      
+      console.log('currentUser.name = ' + String(currentUser.name));
+      Post.get(currentUser.name, function(err, docs) {
+      req.flash('success', '发表成功！');
+      res.redirect('/'); //发表成功跳转到主页
+      });   
+>>>>>>> de90a2199dfc19ab3c8004d7e579d30bc5e37d7f
 
   });
 
