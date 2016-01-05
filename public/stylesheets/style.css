@@ -68,6 +68,13 @@ article a:hover {
   text-align: right;
 }
 
+.infoPost {
+  font-size: 14px;
+  font-family: "Microsoft YaHei";
+  font-size: 1.1em;
+  text-align: left;
+}
+
 form.signin {
   width: 19em; /* 表單的整體寬度 */
   float: left;

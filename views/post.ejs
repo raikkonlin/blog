@@ -1,19 +1,24 @@
 <%- include header %>
   <form method="post">
-   <section> 
+  <section> 
     标题: <br />
   </section>
+
   <br />
   <input type="text" name="title" /><br />
   <br />
     正文: <br />
-  <section>  
+
+   <section>
     <br />
-  <textarea name="post" rows="20" cols="100"></textarea><br />
+  <textarea id="editor_id" name="post" rows="30" cols="120">
+  </section>
+
+  </textarea><br />
   <br />
- </section>
   <section>
   <input type="submit" value="发表" />
-</section>
+  </section>
+  
   </form> 
 <%- include footer %>

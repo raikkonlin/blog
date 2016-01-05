@@ -2,9 +2,10 @@ var mongodb = require('./db');
 
 function Post(name, title, post) {
   this.name = name;
+  //console.log('this.name='+ String(this.name));
   this.title = title;
   this.post = post;
-};
+}
 
 module.exports = Post;
 
@@ -16,9 +17,9 @@ Post.prototype.save = function(callback) {
   var time = {
     date: date,
     year: date.getFullYear(),
-    month: date.getFullYear() + "-" + (date.getMonth() +1 ),
-    day: date.getFullYear() + "-" + (date.getMonth() +1 ) + "-" + date.getDate(),
-    minute: date.getFullYear() + "-" + (date.getMonth() +1 ) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) 
+    month: date.getFullYear() + "-" + (date.getMonth() + 1 ),
+    day: date.getFullYear() + "-" + (date.getMonth() + 1 ) + "-" + date.getDate(),
+    minute: date.getFullYear() + "-" + (date.getMonth() + 1 ) + "-" + date.getDate() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) 
   }
 
   //要存入数据库文档的属性
@@ -28,7 +29,6 @@ Post.prototype.save = function(callback) {
       title: this.title,
       post: this.post
   };
-
   //打开数据库
   mongodb.open(function (err, db) {
     if (err) {
@@ -57,6 +57,8 @@ Post.prototype.save = function(callback) {
 
 //读取文章及相关信息
 Post.get = function(name, callback) {
+
+  console.log('Post.get.name='+ String(name));
   //打开数据库
   mongodb.open(function (err, db) {
      if (err) {
@@ -71,8 +73,11 @@ Post.get = function(name, callback) {
         }
 
         var query = {};
+        console.log('name='+ String(name));
         if (name) {
+        
           query.name = name;
+          console.log('query.name='+ String(query.name));
         }
 
         //根据query对象查询文章
