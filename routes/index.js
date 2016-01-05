@@ -4,7 +4,8 @@ var crypto = require('crypto'),
 
 module.exports = function(app) {
   app.get('/', function (req, res, next) {
-    Post.get(null, function(err, posts) {
+    //var user = req.session.user; 非常重要
+    Post.get(req.session.user.name, function(err, posts) {
       if (err){
         posts = [];
       }
@@ -126,15 +127,18 @@ module.exports = function(app) {
   app.post('/post', function (req, res, next) {
     var currentUser = req.session.user,
         post = new Post(currentUser.name, req.body.title, req.body.post);
+        //console.log(String(currentUser.name));
 
     post.save(function(err){
       if (err) {
         req.flash('error', err);
         return res.redirect('/');
       }
+    });
+    
       req.flash('success', '发表成功！');
       res.redirect('/'); //发表成功跳转到主页
-    });
+
   });
 
   app.get('/logot', checkLogin);

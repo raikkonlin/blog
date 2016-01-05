@@ -4,6 +4,15 @@
 <meta charset="UTF-8" />
 <title>Blog</title>
 <link rel="stylesheet" href="/stylesheets/style.css">
+<script charset="UTF-8" src="/KindEditor/kindeditor-all-min.js"></script>
+<script charset="UTF-8" src="/KindEditor/lang/zh-TW.js"></script>
+<script>
+        var editor;
+        KindEditor.ready(function(K) {
+                editor = K.create('#editor_id');
+        });
+</script>
+
 </head>
 <body>
 
@@ -16,9 +25,11 @@
 <% if (user) { %>
 <span><a title="发表" href="/post">post</a></span>
 <span><a title="登出" href="/logout">logout</a></span>
+<p> </p>
 <% } else { %>
 <span><a title="登入" href="/login">login</a></span>
 <span><a title="注册" href="/reg">register</a></span>
+<p> </p>
 <% } %>
 </nav>
 
